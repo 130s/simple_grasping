@@ -98,7 +98,7 @@ bool ObjectSupportSegmentation::segment(
 
   // remove support planes
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr non_horizontal_planes;
-  non_horizontal_planes = std::make_shared<pcl::PointCloud<pcl::PointXYZRGB>>();
+  non_horizontal_planes = boost::make_shared<pcl::PointCloud<pcl::PointXYZRGB>>();
   std::vector<pcl::ModelCoefficients::Ptr> plane_coefficients;  // coefs of all planes found
   int thresh = cloud_filtered->points.size()/8;
   while (cloud_filtered->points.size() > 500)
@@ -111,7 +111,7 @@ bool ObjectSupportSegmentation::segment(
     segment_.segment(*inliers, *coefficients);
     // TODO(enhancement): make configurable?
     // TODO(enhancement): make this based on "can we grasp object"
-    if (inliers->indices.size() < static_cast<size_t>(thresh))
+    if (inliers->indices.size() < (size_t) thresh)
     {
       RCLCPP_DEBUG(LOGGER, "No more planes to remove.");
       break;
