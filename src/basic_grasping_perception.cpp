@@ -92,8 +92,12 @@ public:
     }
 
     // Range filter for cloud
-    range_filter_.setFilterFieldName("z");
-    range_filter_.setFilterLimits(0, 2.5);
+    //range_filter_.setFilterFieldName("z");
+    //range_filter_.setFilterLimits(0, 1.5);
+    //range_filter_.setFilterFieldName("x");
+    //range_filter_.setFilterLimits(-0.75, 0.75);
+    //range_filter_.setFilterFieldName("y");
+    //range_filter_.setFilterLimits(0, -1.0);
 
     // Setup TF2
     buffer_.reset(new tf2_ros::Buffer(this->get_clock()));
@@ -134,13 +138,16 @@ private:
       boost::make_shared<pcl::PointCloud<pcl::PointXYZRGB>>();
     pcl::fromROSMsg(*msg, *cloud);
 
-    RCLCPP_DEBUG(LOGGER, "Cloud recieved with %d points.", static_cast<int>(cloud->points.size()));
+    //RCLCPP_DEBUG(LOGGER, "Cloud recieved with %d points.", static_cast<int>(cloud->points.size()));
+    RCLCPP_ERROR(LOGGER, "Cloud recieved with %d points.", static_cast<int>(cloud->points.size()));
 
     // Filter out noisy long-range points
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_filtered(new pcl::PointCloud<pcl::PointXYZRGB>);
     range_filter_.setInputCloud(cloud);
     range_filter_.filter(*cloud_filtered);
-    RCLCPP_DEBUG(LOGGER, "Filtered for range, now %d points.",
+    //RCLCPP_DEBUG(LOGGER, "Filtered for range, now %d points.",
+    //             static_cast<int>(cloud_filtered->points.size()));
+    RCLCPP_ERROR(LOGGER, "Filtered for range, now %d points.",
                  static_cast<int>(cloud_filtered->points.size()));
 
     // Transform to grounded

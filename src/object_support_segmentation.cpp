@@ -65,7 +65,7 @@ ObjectSupportSegmentation::ObjectSupportSegmentation(
   // voxel grid the data before segmenting
   double leaf_size, llimit, ulimit;
   leaf_size = node->declare_parameter<double>("voxel_leaf_size", 0.005);
-  llimit = node->declare_parameter<double>("voxel_limit_min", 0.0);
+  llimit = node->declare_parameter<double>("voxel_limit_min", -1.0);
   ulimit = node->declare_parameter<double>("voxel_limit_max", 1.8);
   std::string field = node->declare_parameter<std::string>("voxel_field_name", "z");
   voxel_grid_.setLeafSize(leaf_size, leaf_size, leaf_size);
