@@ -85,7 +85,10 @@ install(
   DIRECTORY include/
   DESTINATION include
 )
-
+foreach(dir config)
+   install(DIRECTORY ${dir}/
+      DESTINATION share/${PROJECT_NAME}/${dir})
+endforeach(dir)
 install(
   PROGRAMS
     scripts/do_perception.py
