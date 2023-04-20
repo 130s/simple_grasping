@@ -233,7 +233,7 @@ private:
       {
         find_objects_ = false;
         goal_handle->abort(result);
-        RCLCPP_ERROR(LOGGER, "Failed to get camera data in alloted time.");
+        RCLCPP_ERROR(LOGGER, "Failed to get camera data in allocated time.");
         return;
       }
     }
