@@ -9,8 +9,10 @@ jobs:
       fail-fast: false
       matrix:
         env:
-          #- {ROS_DISTRO: foxy, ROS_REPO: ros, ABICHECK_URL: "github:mikeferguson/simple_grasping#foxy-devel"}
           - {ROS_DISTRO: foxy, ROS_REPO: ros, ABICHECK_URL: "github:130s/simple_grasping#galactic-devel"}
+          - {ROS_DISTRO: galactic, ROS_REPO: ros,
+             ABICHECK_URL: "github:130s/simple_grasping#galactic-devel",
+             UPSTREAM_WORKSPACE: .dev.repos}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2

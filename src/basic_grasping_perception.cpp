@@ -73,6 +73,8 @@ public:
     // Store clock
     clock_ = this->get_clock();
 
+    // optionally enable object detection from the beginning without need to call the action
+    continuous_detection_ = this->declare_parameter<bool>("continuous_detection", false);
     // use_debug: enable/disable output of a cloud containing object points
     debug_ = this->declare_parameter<bool>("debug_topics", false);
     topic_path_depth_ = this->declare_parameter("topic_path_depth", "/head_camera/depth_registered/points");
@@ -127,7 +129,7 @@ private:
   void cloud_callback(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
   {
     // Be lazy
-    if (!need_to_find_objects_)
+    if (!need_to_find_objects_ && !continuous_detection_)
       return;
 
     // Convert to point cloud
@@ -251,6 +253,7 @@ private:
     goal_handle->succeed(result);
   }
 
+  bool continuous_detection_;
   bool debug_;
   // Topic name of the pointcloud to be subscribed.
   std::string topic_path_depth_;

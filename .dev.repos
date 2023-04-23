@@ -1,0 +1,2 @@
+#- git: {local-name: mikeferguson/grasping_msgs, uri: 'https://github.com/mikeferguson/grasping_msgs.git', version: ros2}
+- git: {local-name: 130s/grasping_msgs, uri: 'https://github.com/130s/grasping_msgs.git', version: missing-dep}
